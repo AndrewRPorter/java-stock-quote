@@ -1,3 +1,5 @@
+package com.aporter.main;
+
 /**
  * This class acts as a container to store stock information
  * such as price, dayLow, dayHigh, etc. It also contains a method
@@ -15,6 +17,10 @@ public class Stock {
 		this.ticker = ticker;
 	}
 	
+	public String getTicker() {
+		return ticker;
+	}
+	
 	public void setPrice( String price ) {
 		this.price = price;
 	}
@@ -30,7 +36,7 @@ public class Stock {
 	public String getDayLow() {
 		return dayLow;
 	}
-	
+
 	public void setDayHigh( String dayHigh ) {
 		this.dayHigh = dayHigh;
 	}
@@ -119,6 +125,7 @@ public class Stock {
 		return EBITDA;
 	}
 	
+	//Returns all the ticker information in an 'easier' to read format
 	public String getInfo() {
 		String info = "";
 		info += ticker + "\n" + "----\n";
