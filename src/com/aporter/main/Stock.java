@@ -11,7 +11,8 @@ package com.aporter.main;
 public class Stock {
 	
 	private String ticker, price, dayLow, dayHigh, dividend, yield, yearLow, yearHigh,
-	fifty_day_avg, two_hundred_day_avg, marketCap, priceBook, EPS, EBITDA;
+	fifty_day_avg, two_hundred_day_avg, marketCap, priceBook, EPS, EBITDA, pe, volume,
+	avgDailyVolume, exchange;
 	
 	public Stock( String ticker ) {
 		this.ticker = ticker;
@@ -125,23 +126,35 @@ public class Stock {
 		return EBITDA;
 	}
 	
-	//Returns all the ticker information in an 'easier' to read format
-	public String getInfo() {
-		String info = "";
-		info += ticker + "\n" + "----\n";
-		info += "Price: " + price + "\n";
-		info += "Day Low: " + dayLow + "\n";
-		info += "Day High: " + dayHigh + "\n";
-		info += "Dividend: " + dividend + "\n";
-		info += "Yield: " + yield + "\n";
-		info += "52 Week Low: " + yearLow + "\n";
-		info += "52 Week High: " + yearHigh + "\n";
-		info += "50-Day Moving Average: " + fifty_day_avg + "\n";
-		info += "200-Day Moving Average: " + two_hundred_day_avg + "\n";
-		info += "Market Cap: " + marketCap + "\n";
-		info += "Book Value: " + priceBook + "\n";
-		info += "Earnings Per Share: " + EPS + "\n";
-		info += "EBITDA: " + EBITDA + "\n";
-		return info;
+	public void setPE( String pe ) {
+		this.pe = pe;
+	}
+	
+	public String getPE() {
+		return pe;
+	}
+	
+	public void setVolume( String volume ) {
+		this.volume = volume;
+	}
+	
+	public String getVolume() {
+		return volume;
+	}
+	
+	public void setAvgDailyVolume( String avgDailyVolume ) {
+		this.avgDailyVolume = avgDailyVolume;
+	}
+	
+	public String getAvgDailyVolume() {
+		return avgDailyVolume;
+	}
+	
+	public void setExchange( String exchange ) {
+		this.exchange = exchange;
+	}
+	
+	public String getExchange() {
+		return exchange;
 	}
 }

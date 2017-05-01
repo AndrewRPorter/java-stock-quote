@@ -5,14 +5,13 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.Vector;
 
-
 /**
  * Downloads a csv file from yahoo-finance and then
  * creates a Stock object holding its information.
  * 
  * URL's that follow the following format:
  * http://download.finance.yahoo.com/d/quotes.csv?s=[ticker]&f=[tags]4&e=.csv
- * can be used to extract certain information into a CSV file. The tags 
+ * can be used to extract certain information from a CSV file. The tags 
  * and what they mean can be found in tags.txt.
  * 
  * This project was inspired by the following URL:
@@ -23,10 +22,10 @@ import java.util.Vector;
  */
 public class StockFetcher {
 	
-	static Stock   stock       = null;
+	static Stock stock  = null;
 	Scanner scan        = null;
 	Vector<String> data = null;
-	static final String DEFAULT_TAGS = "l1ghdyjkm3m4j1b4ej4";
+	static final String DEFAULT_TAGS = "l1ghdyjkm3m4j1b4ej4rva2x";
 
 	/*
 	 * Trys to open and download from yahoo-finance. 
@@ -36,11 +35,10 @@ public class StockFetcher {
 	{
 		try
 		{
-			ticker = ticker.toUpperCase();
 			URL url = new URL( "http://download.finance.yahoo.com/d/quotes.csv?s=" + 
 					ticker + "&f=" + tags + "&e=.csv" );
 			
-			stock = new Stock( ticker );
+			stock = new Stock( ticker.toUpperCase() );
 			data  = new Vector<String>();
 			scan  = new Scanner( url.openStream() );
 			parseFile();
@@ -55,25 +53,14 @@ public class StockFetcher {
 	/*
 	 * Returns a Stock with the default tags:
 	 * 
-	 * price, dayLow, dayHigh, dividend, yield, yearLow
-	 * yearHigh, fifty_day_avg, two_hundred_day_avg, marketCap
-	 * priceBook, EPS, EBITDA
+	 * ticker, price, dayLow, dayHigh, dividend, yield, yearLow, 
+	 * yearHigh, fifty_day_avg, two_hundred_day_avg, marketCap, 
+	 * priceBook, EPS, EBITDA, pe, volume, avgDailyVolume, exchange;
 	 * 
 	 * @param ticker String
 	 */
 	public static Stock getStock( String ticker ) {
 		new StockFetcher( ticker, DEFAULT_TAGS );
-		return stock;
-	}
-	
-	/*
-	 * Returns a Stock with user defined tags.
-	 * 
-	 * @param ticker String
-	 * @param tags String
-	 */
-	public static Stock getStock( String ticker, String tags ) {
-		new StockFetcher( ticker, tags );
 		return stock;
 	}
 	
@@ -108,5 +95,9 @@ public class StockFetcher {
 		stock.setPriceBook       ( data.get( 10 ) );
 		stock.setEPS             ( data.get( 11 ) );
 		stock.setEBITDA          ( data.get( 12 ) );
+		stock.setPE              ( data.get( 13 ) );
+		stock.setVolume          ( data.get( 14 ) );
+		stock.setAvgDailyVolume  ( data.get( 15 ) );
+		stock.setExchange        ( data.get( 16 ) );
 	}
 }
