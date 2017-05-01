@@ -22,10 +22,10 @@ import java.util.Vector;
  */
 public class StockFetcher {
 	
-	static Stock stock  = null;
-	Scanner scan        = null;
-	Vector<String> data = null;
-	static final String DEFAULT_TAGS = "l1ghdyjkm3m4j1b4ej4rva2x";
+	private static Stock stock  = null;
+	private Scanner scan        = null;
+	private Vector<String> data = null;
+	private static final String DEFAULT_TAGS = "l1ghdyjkm3m4j1b4ej4rva2x";
 
 	/*
 	 * Trys to open and download from yahoo-finance. 
